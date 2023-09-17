@@ -25,7 +25,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     {
       initSlidingAnimation();
 
-       Future.delayed(const Duration(seconds: 2), () {
+       Future.delayed(const Duration(seconds: 3), () {
         Get.to(
           () => const HomeScreen(),
           transition: Transition.fade,
