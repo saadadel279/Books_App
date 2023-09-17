@@ -18,16 +18,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds:1 ),
-    );
-
-    slidingAnimation= Tween<Offset>(begin:const Offset(0, 2) ,end:Offset.zero )
-      .animate(animationController);
-      animationController.forward();
-      
+    {
+      initSlidingAnimation();
+     
+    }
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -41,11 +37,22 @@ class _SplashViewBodyState extends State<SplashViewBody>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset(AssetsData.logo),
-         Center(
+        Center(
           child: SlidingText(slidingAnimation: slidingAnimation),
         )
       ],
     );
   }
-}
 
+  void initSlidingAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
+            .animate(animationController);
+    animationController.forward();
+  }
+}
