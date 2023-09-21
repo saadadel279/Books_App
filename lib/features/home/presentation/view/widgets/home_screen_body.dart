@@ -23,6 +23,7 @@ class HomeScreenBoy extends StatelessWidget {
               style: Styles.textStyle18,
             ),
           ),
+          SizedBox(height: 20,),
           BestSellerListviewItem(),
 
         ],
