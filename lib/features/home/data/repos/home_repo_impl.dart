@@ -29,8 +29,20 @@ final ApiServices apiServices;
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> featchFeaturedBooks() {
-    // TODO: implement featchFeaturedBooks
-    throw UnimplementedError();
+  Future<Either<Failure, List<BooksModel>>> featchFeaturedBooks() async{
+    var data= await apiServices.get(endPoint: 'volumes?Filtering=free-ebooks&q=subject:computer science');
+
+  try {
+  List<BooksModel> books=[];
+  for (var item in data['items']) {
+    books.add(BooksModel.fromJson(item));
+  }
+  return right(books);
+} catch (e) {
+  if(e is DioException){
+    return left(ServerFailure.fromDioException(e));
+  
+  }return left(ServerFailure(e.toString()));
+}
   }
 }
