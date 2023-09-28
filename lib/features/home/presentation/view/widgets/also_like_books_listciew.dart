@@ -17,7 +17,7 @@ class AlsoLikeBooksListview extends StatelessWidget {
                 onTap: () {
                  
                 },
-                child: const CustomBookCover()),
+                child:  const CustomBookCover(imageURL: 'https://tse3.mm.bing.net/th?id=OIP.4siKIW3oZ4kEo0vkEVQ5hgHaLH&pid=Api&P=0&h=220',)),
             );
           }),
     );

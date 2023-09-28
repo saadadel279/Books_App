@@ -25,7 +25,7 @@ class BookDetailsScreenBody extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.25),
-              child: const CustomBookCover(),
+              child:  const CustomBookCover(imageURL: 'https://tse3.mm.bing.net/th?id=OIP.4siKIW3oZ4kEo0vkEVQ5hgHaLH&pid=Api&P=0&h=220'),
             ),
             const SizedBox(
               height: 30,

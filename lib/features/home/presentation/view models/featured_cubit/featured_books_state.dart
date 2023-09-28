@@ -13,11 +13,9 @@ final class FeaturedBooksFaileur extends FeaturedBooksState {
   final String errMessage;
 
   const FeaturedBooksFaileur(this.errMessage);
-
-
 }
 final class FeaturedBooksSuccess extends FeaturedBooksState {
- final List<BooksModel> books;
+ final List<BookModel> books;
 
  const FeaturedBooksSuccess(this.books);
 

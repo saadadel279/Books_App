@@ -11,13 +11,13 @@ final ApiServices apiServices;
 
   HomeRepoImp({required this.apiServices});
   @override
-  Future<Either<Failure, List<BooksModel>>> featchNewestBooks() async{
+  Future<Either<Failure, List<BookModel>>> featchNewestBooks() async{
    var data= await apiServices.get(endPoint: 'volumes?Filtering=free-ebooks&Sorting=newest &q=subject:computer science');
 
   try {
-  List<BooksModel> books=[];
+  List<BookModel> books=[];
   for (var item in data['items']) {
-    books.add(BooksModel.fromJson(item));
+    books.add(BookModel.fromJson(item));
   }
   return right(books);
 } catch (e) {
@@ -29,13 +29,13 @@ final ApiServices apiServices;
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> featchFeaturedBooks() async{
-    var data= await apiServices.get(endPoint: 'volumes?Filtering=free-ebooks&q=subject:computer science');
+  Future<Either<Failure, List<BookModel>>> featchFeaturedBooks() async{
+    var data= await apiServices.get(endPoint: 'volumes?Filtering=free-ebooks&q=subject:programming');
 
   try {
-  List<BooksModel> books=[];
+  List<BookModel> books=[];
   for (var item in data['items']) {
-    books.add(BooksModel.fromJson(item));
+    books.add(BookModel.fromJson(item));
   }
   return right(books);
 } catch (e) {

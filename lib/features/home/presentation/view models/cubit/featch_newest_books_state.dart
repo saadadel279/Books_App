@@ -10,7 +10,7 @@ sealed class FeatchNewestBooksState extends Equatable {
 final class FeatchNewestBooksInitial extends FeatchNewestBooksState {}
 final class FeatchNewestBooksLoading extends FeatchNewestBooksState {}
 final class FeatchNewestBooksSuccess extends FeatchNewestBooksState {
-  final List<BooksModel>books;
+  final List<BookModel>books;
 
  const FeatchNewestBooksSuccess(this.books);
 }
