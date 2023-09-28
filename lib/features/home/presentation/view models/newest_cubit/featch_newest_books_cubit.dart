@@ -5,8 +5,8 @@ import 'package:equatable/equatable.dart';
 
 part 'featch_newest_books_state.dart';
 
-class FeatchNewestBooksCubit extends Cubit<FeatchNewestBooksState> {
-  FeatchNewestBooksCubit(this.homeRepoImp) : super(FeatchNewestBooksInitial());
+class NewestBooksCubit extends Cubit<FeatchNewestBooksState> {
+  NewestBooksCubit(this.homeRepoImp) : super(FeatchNewestBooksInitial());
   final HomeRepoImp homeRepoImp;
   Future<void> featchnewestbooks() async {
     emit(FeatchNewestBooksLoading());
