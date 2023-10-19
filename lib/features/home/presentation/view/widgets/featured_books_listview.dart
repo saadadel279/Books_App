@@ -14,48 +14,48 @@ class FeaturedBooksListview extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
       builder: (context, state) {
-        if(state is FeaturedBooksSuccess){
+        if (state is FeaturedBooksSuccess) {
           return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.3,
-          child: ListView.builder(
-  physics: const BouncingScrollPhysics(),
-  itemCount: state.books.length,
-  scrollDirection: Axis.horizontal,
-  itemBuilder: (context, index) {
-    final imageLinks = state.books[index].volumeInfo.imageLinks;
-    final thumbnail = state.books[index].volumeInfo.imageLinks?.thumbnail;
-    
-    // Check if imageLinks is null or the thumbnail is null
-    if (imageLinks == null ||
-        thumbnail == null) {
-      // Return a SizedBox or any other placeholder widget
-      return const SizedBox(
-        width:0,
-        height: 0, // Specify a width for the placeholder,
-        child: Center(
-          child: Text(""),
-        ),
-      );
-    } else {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: GestureDetector(
-          onTap: () {
-            GoRouter.of(context).push(AppRouters.kBookDetailsscreen);
-          },
-          child: CustomBookCover(imageURL: state.books[index].volumeInfo.imageLinks!.thumbnail!,)
-        ),
-      );
-    }
-  },
-)
-
-        );
-        } else if(state is FeaturedBooksFaileur){
-         
-          return CustomErrorMessage(errMessage:state.errMessage ,);
-        }else{
-          return const CustomLoading() ;
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: state.books.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final imageLinks = state.books[index].volumeInfo.imageLinks;
+                  final thumbnail =
+                      state.books[index].volumeInfo.imageLinks?.thumbnail;
+                  if (imageLinks == null || thumbnail == null) {
+                    return const SizedBox(
+                      width: 0,
+                      height: 0, // Specify a width for the placeholder,
+                      child: Center(
+                        child: Text(""),
+                      ),
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context)
+                                .push(AppRouters.kBookDetailsscreen,extra: state.books[index]);
+                                
+                          },
+                          child: CustomBookCover(
+                            imageURL: state
+                                .books[index].volumeInfo.imageLinks!.thumbnail!,
+                          )),
+                    );
+                  }
+                },
+              ));
+        } else if (state is FeaturedBooksFaileur) {
+          return CustomErrorMessage(
+            errMessage: state.errMessage,
+          );
+        } else {
+          return const CustomLoading();
         }
       },
     );

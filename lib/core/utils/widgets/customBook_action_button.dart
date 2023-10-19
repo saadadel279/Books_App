@@ -7,19 +7,20 @@ class CustomBookActionButton extends StatelessWidget {
     required this.actionText,
     required this.textColor,
     required this.backgroundColor,
-    this.borderRadius,
+    this.borderRadius, this.onPressed,
   });
   final String actionText;
   final Color textColor;
   final Color backgroundColor;
   final BorderRadius? borderRadius;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
       child: TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: TextButton.styleFrom(
             backgroundColor: backgroundColor,
             shape: RoundedRectangleBorder(

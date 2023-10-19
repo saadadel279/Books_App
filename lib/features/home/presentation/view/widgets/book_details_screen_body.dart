@@ -1,4 +1,5 @@
 import 'package:books_app/core/utils/styles.dart';
+import 'package:books_app/features/home/data/models/book_model/book_model.dart';
 import 'package:books_app/features/home/presentation/view/widgets/also_like_books_listciew.dart';
 import 'package:books_app/features/home/presentation/view/widgets/book_action.dart';
 import 'package:books_app/features/home/presentation/view/widgets/book_rating.dart';
@@ -7,7 +8,8 @@ import 'package:books_app/features/home/presentation/view/widgets/custom_book_co
 import 'package:flutter/material.dart';
 
 class BookDetailsScreenBody extends StatelessWidget {
-  const BookDetailsScreenBody({super.key});
+  const BookDetailsScreenBody({super.key, required this.book});
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -25,13 +27,16 @@ class BookDetailsScreenBody extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.25),
-              child:  const CustomBookCover(imageURL: 'https://tse3.mm.bing.net/th?id=OIP.4siKIW3oZ4kEo0vkEVQ5hgHaLH&pid=Api&P=0&h=220'),
+              child:   CustomBookCover(imageURL: book.volumeInfo.imageLinks?.thumbnail ?? 'https://tse3.mm.bing.net/th?id=OIP.4siKIW3oZ4kEo0vkEVQ5hgHaLH&pid=Api&P=0&h=220'),
             ),
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              'The Jungle Book',
+             Text(
+             maxLines: 1,
+             overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              book.volumeInfo.title!,
               style: Styles.textStyle30,
             ),
             const SizedBox(
@@ -40,23 +45,21 @@ class BookDetailsScreenBody extends StatelessWidget {
             Opacity(
               opacity: 0.5,
               child: Text(
-                'Rudyard Kipling',
+                book.volumeInfo.authors![0],
                 style: Styles.textStyle18.copyWith(fontStyle: FontStyle.italic),
               ),
             ),
             const SizedBox(height: 7),
             const Padding(
               padding: EdgeInsets.only(left: 142),
-              child: BookRating(),
+              child: BookRating(count: 477,rating: 4.5),
             ),
             const SizedBox(
               height: 10,
             ),
-            const BookAction(),
-            const Expanded(
-              child: SizedBox(
-                height: 15,
-              ),
+             BookAction(book: book),
+            const SizedBox(
+              height: 15,
             ),
              const Row(
                children: [
@@ -66,7 +69,7 @@ class BookDetailsScreenBody extends StatelessWidget {
              const SizedBox(
               height: 10,
              ),
-           const AlsoLikeBooksListview(),
+            AlsoLikeBooksListview(book: book,),
                   ],
                 ),
           ),
