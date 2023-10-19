@@ -18,13 +18,14 @@ class AlsoLikeBooksListview extends StatelessWidget {
           return SizedBox(
           height: MediaQuery.of(context).size.height * 0.16,
           child: ListView.builder(
+            itemCount:state.book.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5.0),
                   child: CustomBookCover(
                     imageURL:
-                        state.book[index].volumeInfo.imageLinks?.thumbnail??"",
+                        state.book[index].volumeInfo.imageLinks?.thumbnail??"https://tse3.mm.bing.net/th?id=OIP.8TD_d_dRAQZ9nMWBjjB8pwHaLe&pid=Api&P=0&h=220",
                   ),
                 );
               }),
